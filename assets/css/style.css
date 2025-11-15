@@ -1,0 +1,99 @@
+/* ========= COLORS & ROOT ========== */
+:root{
+  --pink: #ffadcc;
+  --white: #ffffff;
+  --dark-red: #7a0b18;
+  --muted: #f7e9ef;
+  --glass: rgba(255,255,255,0.75);
+  --radius: 18px;
+  --card-shadow: 0 8px 30px rgba(122,11,24,0.12);
+  --accent: linear-gradient(135deg,var(--pink),#ff6b9a 60%);
+  --mobile-break: 820px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* ====== BASIC LAYOUT ====== */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,#fff 0%, #fff5f8 50%);color:var(--dark-red)}
+a{color:inherit}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;backdrop-filter: blur(6px);}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .dot{width:42px;height:42px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+nav{display:flex;gap:12px;align-items:center}
+nav a{padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:600}
+nav a.active{background:var(--dark-red);color:var(--white)}
+
+main{max-width:1100px;margin:24px auto;padding:18px}
+.card{background:linear-gradient(180deg,var(--white),var(--muted));border-radius:var(--radius);box-shadow:var(--card-shadow);padding:20px}
+
+/* ====== HERO / HOME ====== */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+.hero .text h1{font-size:clamp(28px,5vw,44px);margin:0 0 8px}
+.hero .text p{margin:0 0 18px;color:#7a1620}
+
+/* Cake */
+.cake-wrap{display:flex;align-items:flex-end;justify-content:center}
+.cake{width:260px;height:220px;position:relative;border-radius:18px 18px 28px 28px;padding-top:18px}
+.layer{width:80%;height:52px;margin:0 auto;background:linear-gradient(180deg,#ffecf3,#ffd7ea);border-radius:12px;box-shadow:inset 0 -6px 12px rgba(0,0,0,0.06)}
+.frost{position:absolute;left:50%;transform:translateX(-50%);top:8px;width:90%;height:16px;border-radius:10px;background:var(--pink)}
+.candle{position:absolute;left:50%;transform:translateX(-50%);top:-34px;width:12px;height:48px;background:linear-gradient(180deg,#fff,#ffe7f0);border-radius:6px;display:flex;align-items:flex-start;justify-content:center}
+.wick{width:2px;height:8px;background:#6b2a2f;margin-top:6px}
+.flame{width:14px;height:20px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background: radial-gradient(circle at 35% 30%, #fff2a8 0%, #ffd54d 20%, #ff7a7a 52%);margin-top:-10px;filter:drop-shadow(0 6px 6px rgba(255,120,120,0.25));animation:flame 900ms infinite}
+.flame.extinguished{opacity:0;transform:scale(0.5);transition:all .45s}
+
+@keyframes flame{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+
+.controls{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.btn{background:var(--dark-red);color:white;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+.btn.ghost{background:transparent;color:var(--dark-red);border:2px solid rgba(122,11,24,0.08)}
+
+/* small screen hero stack */
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;gap:18px}
+  .cake{width:220px;height:180px}
+}
+
+/* ====== PAGES SECTION ====== */
+.pages{margin-top:20px}
+.page{display:none}
+.page.active{display:block}
+
+/* ====== MESSAGE PAGE (heart balloons) ====== */
+.balloon-area{position:relative;min-height:280px;overflow:hidden}
+.balloon{position:absolute;bottom:-160px;border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;width:72px;height:100px;display:flex;align-items:center;justify-content:center}
+.balloon .string{position:absolute;bottom:-90px;width:2px;height:100px;background:#c76a78;left:50%;transform:translateX(-50%)}
+
+/* balloon animations */
+.balloon.b1{left:8%;background:linear-gradient(180deg,#ffd1e0,#ff9cbc);animation:floatUp 9s infinite ease-in}
+.balloon.b2{left:22%;background:linear-gradient(180deg,#ff9cbc,#ff6b9a);animation:floatUp 11s -2s infinite ease-in}
+.balloon.b3{left:44%;background:linear-gradient(180deg,#ffc2e3,#ff8ca8);animation:floatUp 10s -4s infinite ease-in}
+.balloon.b4{left:66%;background:linear-gradient(180deg,#ffe4f1,#ffb2d9);animation:floatUp 12s -1s infinite ease-in}
+.balloon.b5{left:82%;background:linear-gradient(180deg,#ffdada,#ff9ecb);animation:floatUp 8s -3s infinite ease-in}
+
+@keyframes floatUp{0%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-45vh) rotate(8deg)}100%{transform:translateY(-95vh) rotate(-3deg)}}
+
+.message-card{padding:18px;border-radius:14px;background:linear-gradient(180deg,#fff,#fff7fb)}
+
+/* ====== GALLERY ====== */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.gallery-grid img{width:100%;height:300px;object-fit:cover;border-radius:12px;cursor:pointer;display:block}
+.modal{position:fixed;inset:0;background:rgba(10,10,10,0.6);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999;opacity:0;pointer-events:none;transition:all .2s}
+.modal.open{opacity:1;pointer-events:auto}
+.modal img{max-width:90%;max-height:80%;border-radius:12px}
+
+/* ====== MUSIC ====== */
+.music-area{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.music-player{display:flex;gap:12px;align-items:center}
+.note{width:36px;height:36px;border-radius:8px;background:linear-gradient(180deg,#fff,#ffeef6);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(122,11,24,0.06)}
+.pulse{animation:pulse 1.8s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+/* ====== SURPRISE PAGE ====== */
+.surprise-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.hidden-msg{max-width:760px;padding:18px;border-radius:12px;background:var(--glass);text-align:center;opacity:0;transform:translateY(10px) scale(.98);transition:all .45s}
+.hidden-msg.show{opacity:1;transform:translateY(0) scale(1)}
+.confetti{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none}
+
+/* ====== FOOTER ====== */
+footer{margin-top:28px;padding:18px;text-align:center;color:#7a1620}
